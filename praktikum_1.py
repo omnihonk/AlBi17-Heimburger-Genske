@@ -1,10 +1,4 @@
 
-# coding: utf-8
-
-# # implementation of frequentwords
-
-# In[61]:
-
 
 def frequentwords(text, k):
     """in: a textstring and an int k out: a dictionary with most frequent k-mer as key and number of it's occurences as value """
@@ -13,7 +7,7 @@ def frequentwords(text, k):
     for i in range(0,len(text)-k):
         pattern = text[i:i+k]
         count.insert(i, patterncount(text,pattern))
-    
+
     maxcount=max(count)
     for i in range(0,len(text)-k):
         if count[i]==maxcount:
@@ -22,10 +16,6 @@ def frequentwords(text, k):
             except:
                 pass
     return frequent_patterns
-                
-
-
-# In[62]:
 
 
 def patterncount(text, pattern):
@@ -38,20 +28,8 @@ def patterncount(text, pattern):
     return counter
 
 
-# ## testrun of frequentwords
-
-# In[92]:
-
-
 text="atgtcgaaggtcct"
 frequentwords(text,2)
-
-
-# # implementation of fastfrequentwords
-
-# ## conversion helper 
-
-# In[67]:
 
 
 def pattern_to_number(pattern):
@@ -59,11 +37,8 @@ def pattern_to_number(pattern):
         return 0
     symbol = pattern[-1:]
     prefix = pattern[0:-1]
-    
+
     return 4*pattern_to_number(prefix)+symbol_to_number(symbol)
-
-
-# In[65]:
 
 
 def symbol_to_number(symbol):
@@ -74,9 +49,6 @@ def symbol_to_number(symbol):
         print("allowed Symbols are: a,c,t,g")
 
 
-# In[75]:
-
-
 def number_to_pattern(index, k):
     if k == 1:
         return number_to_symbol(index)
@@ -84,11 +56,8 @@ def number_to_pattern(index, k):
     r = index%4
     symbol = number_to_s ymbol(r)
     prefix_pattern = number_to_pattern(prefix_index, k-1)
-    
+
     return prefix_pattern+symbol
-
-
-# In[71]:
 
 
 def number_to_symbol(number):
@@ -97,11 +66,6 @@ def number_to_symbol(number):
         return poss[number]
     except KeyError:
         print("allowed Symbols are: 0,1,2,3")
-
-
-# ## fastfrequentwords
-
-# In[90]:
 
 
 def fastfrequentwords(text,k):
@@ -116,7 +80,7 @@ def fastfrequentwords(text,k):
             except:
                 pass
     return frequent_patters
-    
+
 
 
 # In[85]:
@@ -138,4 +102,3 @@ def computing_frequencies(text, k):
 
 text="atgtcgaaggtcct"
 fastfrequentwords(text,2)
-
